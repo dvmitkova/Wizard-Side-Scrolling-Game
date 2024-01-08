@@ -8,6 +8,18 @@ function start(state, game) {
 }
 
 function gameLoop(state, game) {
-    console.log(state.keys);
+    const { wizard } = state;//състояние;
+    const { wizardElement } = game;//ДОМ изглед;
+
+
+    //Move wizard - state
+    if (state.keys.KeyD) {//Ако е натиснат бутон D:
+        console.log(state.keys);
+        state.wizard.posX += 2;
+    }
+
+    //RenderMove wizard - render DOM
+    wizardElement.style.left = wizard.posX + 'px';
+
     window.requestAnimationFrame(gameLoop.bind(null, state, game));//правим безкраен цикъл;
 }

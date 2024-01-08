@@ -20,6 +20,10 @@ function initState() {
             maxSpawnInterval: 1500,
             speed: 8,
         },
+        fireball: {
+            width: 20,
+            height: 20,
+        },
         keys: {
             KeyA: false,//false, защото не е натиснат в началото;
             KeyS: false,

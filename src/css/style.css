@@ -38,6 +38,12 @@ body {
     height: 100%;
 }
 
+.wizard {
+    position: absolute;
+    background-image: url('/src/images/wizard.png');
+    background-size: cover;
+}
+
 .hidden {
     display: none;
 }

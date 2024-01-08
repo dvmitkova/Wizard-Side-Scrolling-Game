@@ -14,12 +14,25 @@ function gameLoop(state, game) {
 
     //Move wizard - state
     if (state.keys.KeyD) {//Ако е натиснат бутон D:
-        console.log(state.keys);
-        state.wizard.posX += 2;
+        state.wizard.posX += wizard.speed;
     }
 
-    //RenderMove wizard - render DOM
+    if (state.keys.KeyW) {//Ако е натиснат бутон W:
+        state.wizard.posY -= wizard.speed;
+    }
+
+    if (state.keys.KeyA) {//Ако е натиснат бутон D:
+        state.wizard.posX -= wizard.speed;
+    }
+
+    if (state.keys.KeyS) {//Ако е натиснат бутон W:
+        state.wizard.posY += wizard.speed;
+    }
+
+
+    //RenderMove wizard - render DOM - местене на човечето по екрана;
     wizardElement.style.left = wizard.posX + 'px';
+    wizardElement.style.top = wizard.posY + 'px';
 
     window.requestAnimationFrame(gameLoop.bind(null, state, game));//правим безкраен цикъл;
 }

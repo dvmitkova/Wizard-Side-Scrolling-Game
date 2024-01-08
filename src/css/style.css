@@ -3,7 +3,7 @@ body {
     margin: 0; 
 }
 
-.game-screen {
+.game-view {
     position: relative;
     background: rgb(61, 160, 244);
     background: linear-gradient(0deg, rgba(61, 160, 244, 1) 0%,
@@ -31,4 +31,13 @@ body {
 .start-screen:hover {
     background-color: rgb(238, 219, 100);
     cursor: pointer; 
+}
+
+.game-screen {/*взимаме 100% от позицията на parent-елемента game-view*/
+    width: 100%;
+    height: 100%;
+}
+
+.hidden {
+    display: none;
 }

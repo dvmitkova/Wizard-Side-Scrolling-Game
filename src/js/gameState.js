@@ -21,10 +21,11 @@ function initState() {
             speed: 8,
         },
         keys: {
-            KeyA: false,
+            KeyA: false,//false, защото не е натиснат в началото;
             KeyS: false,
             KeyD: false,
             KeyW: false,
+            Space: false,
         }
     }
 

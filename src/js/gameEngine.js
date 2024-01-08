@@ -13,6 +13,12 @@ function gameLoop(state, game, timestamp) {
 
     modifyWizardPosition(state, game);
 
+    if (state.keys.Space) {
+        game.wizardElement.style.backgroundImage = 'url("/src/images/wizard-fire.png")'
+    } else {
+        game.wizardElement.style.backgroundImage = 'url("/src/images/wizard.png")'
+    }
+
     //Spawn bugs
     if (timestamp > state.bugStats.nextSpawnTimestamp) {//ако timestamp е по-голям
         //значи е дошло време да пратим нов бъг;
@@ -28,16 +34,12 @@ function gameLoop(state, game, timestamp) {
             bug.style.left = posX - state.bugStats.speed + 'px';
         } else {
             bug.remove();
-        }
-
-        
+        } 
     })
 
     //Render wizard movement - render DOM - местене на човечето по екрана;
     wizardElement.style.left = wizard.posX + 'px';
     wizardElement.style.top = wizard.posY + 'px';
-
-    
 
     window.requestAnimationFrame(gameLoop.bind(null, state, game));//правим безкраен цикъл;
 }

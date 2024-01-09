@@ -29,7 +29,8 @@ function gameLoop(state, game, timestamp) {
     }
     
     //Render bugs movement
-    document.querySelectorAll('.bug').forEach(bug => {
+    let bugElements = document.querySelectorAll('.bug');
+    bugElements.forEach(bug => {
         let posX = parseInt(bug.style.left);
 
         if (posX > 0) {
@@ -37,11 +38,19 @@ function gameLoop(state, game, timestamp) {
         } else {
             bug.remove();
         } 
-    })
+    });
 
     //Render fireballs
     document.querySelectorAll('.fireball').forEach(fireball => {
         let posX = parseInt(fireball.style.left);
+
+        //Detect collision
+        bugElements.forEach(bug => {//проверяваме за всеки един бъг дали има колизия с всеки един файърбол
+            if (detectCollision(bug, fireball)) {
+                bug.remove();
+                fireball.remove();
+            }
+        })
 
         if (posX > game.gameScreen.offsetWidth) {
             fireball.remove();
@@ -78,4 +87,13 @@ function modifyWizardPosition(state, game) {
         wizard.posY = Math.min(wizard.posY + wizard.speed, game.gameScreen.offsetHeight - wizard.height);
         //по-малката от двете ст-сти - втората е крайната точка на екрана;
     }
+}
+
+function detectCollision(objectA, objectB) {
+    let first = objectA.getBoundingClientRect();
+    let second = objectB.getBoundingClientRect();
+
+    let hasCollision = !(first.top > second.bottom || first.bottom < second.top || first.right < second.left || first.left > second.right);
+
+    return hasCollision;
 }

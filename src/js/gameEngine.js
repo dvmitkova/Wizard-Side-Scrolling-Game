@@ -16,7 +16,13 @@ function gameLoop(state, game, timestamp) {
     if (state.keys.Space) {
         game.wizardElement.style.backgroundImage = 'url("/src/images/wizard-fire.png")'
         
-        game.createFireball(wizard, state.fireball);
+        if (timestamp > state.fireball.nextSpawnTimestamp) {//проверяваме дали
+            //текущия timestamp е > от nextTimeStamp и тогава създаваме нов fireball;
+            game.createFireball(wizard, state.fireball);
+            state.fireball.nextSpawnTimestamp = timestamp + state.fireball.fireRate;
+            //правим времеви интервал м/у изстрелването на fireballs;
+        }
+        
     } else {
         game.wizardElement.style.backgroundImage = 'url("/src/images/wizard.png")'
     }

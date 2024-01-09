@@ -39,6 +39,11 @@ function gameLoop(state, game, timestamp) {
     bugElements.forEach(bug => {
         let posX = parseInt(bug.style.left);
 
+        //Detect collision with wizard
+        if (detectCollision(wizardElement, bug)) {
+            state.gameOver = true;
+        }
+
         if (posX > 0) {
             bug.style.left = posX - state.bugStats.speed + 'px';
         } else {
@@ -63,13 +68,17 @@ function gameLoop(state, game, timestamp) {
         } else {
             fireball.style.left = posX + state.fireball.speed + 'px';
         }
-    })
+    });
 
     //Render wizard movement - render DOM - местене на човечето по екрана;
     wizardElement.style.left = wizard.posX + 'px';
     wizardElement.style.top = wizard.posY + 'px';
 
-    window.requestAnimationFrame(gameLoop.bind(null, state, game));//правим безкраен цикъл;
+    if (state.gameOver) {
+        alert ('Game Over!')
+    } else {
+        window.requestAnimationFrame(gameLoop.bind(null, state, game));//правим безкраен цикъл;
+    }
 }
 
 function modifyWizardPosition(state, game) {

@@ -6,6 +6,7 @@ let startY = Math.floor(Math.random() * 500)
 function initState() {
     const state = {//тук събираме инфо за цялата ни игра;
         player: 'Pesho',
+        gameOver: false,
         wizard: {
             width: 82,
             height: 100,

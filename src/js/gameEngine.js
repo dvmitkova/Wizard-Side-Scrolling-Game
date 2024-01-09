@@ -11,6 +11,8 @@ function gameLoop(state, game, timestamp) {
     const { wizard } = state;//състояние;
     const { wizardElement } = game;//ДОМ изглед;
 
+    game.scoreScreen.textContent = `${state.score} pts.`;
+
     modifyWizardPosition(state, game);
 
     if (state.keys.Space) {
@@ -58,6 +60,7 @@ function gameLoop(state, game, timestamp) {
         //Detect collision
         bugElements.forEach(bug => {//проверяваме за всеки един бъг дали има колизия с всеки един файърбол
             if (detectCollision(bug, fireball)) {
+                state.score += state.killScore;
                 bug.remove();
                 fireball.remove();
             }
@@ -75,8 +78,9 @@ function gameLoop(state, game, timestamp) {
     wizardElement.style.top = wizard.posY + 'px';
 
     if (state.gameOver) {
-        alert ('Game Over!')
+        alert (`Game Over - You had ${state.score} pts.`)
     } else {
+        state.score += state.scoreRate;
         window.requestAnimationFrame(gameLoop.bind(null, state, game));//правим безкраен цикъл;
     }
 }

@@ -7,6 +7,9 @@ function initState() {
     const state = {//тук събираме инфо за цялата ни игра;
         player: 'Pesho',
         gameOver: false,
+        score: 0,
+        scoreRate: 1,
+        killScore: 1000,
         wizard: {
             width: 82,
             height: 100,
